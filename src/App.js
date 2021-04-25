@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import About from "./pages/About";
+import Add from "./pages/Add";
+import Dashboard from "./pages/Dashboard";
+import Flower from "./pages/Flower";
 
-function App() {
+function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+
+          <Navbar />
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "50px"
+        }}>
+
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+              <Router path="/about">
+                  <About />
+              </Router>
+              <Router path="/add">
+                  <Add />
+              </Router>
+              <Router path="/dashboard">
+                  <Dashboard />
+              </Router>
+              <Router path="/flower/:id">
+                  <Flower />
+              </Router>
+              <Router path="/">
+                  <h1>Welcome to my app!</h1>
+              </Router>
+          </Switch>
+        </div>
+      </Router>
   );
 }
 
